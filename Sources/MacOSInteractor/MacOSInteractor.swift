@@ -16,8 +16,8 @@ public struct MacOSInteractor: OSInteractor {
   private let shell: Shell
   private let cliclick: Cliclick
   
-  public init () {
-    self.shell = Shell(defaultStaggarDelay: 0.05)
+  public init (interactionDuration: TimeInterval = 0.05) {
+    self.shell = Shell(defaultStaggarDelay: interactionDuration)
     self.cliclick = Cliclick(shell: self.shell)
   }
 }

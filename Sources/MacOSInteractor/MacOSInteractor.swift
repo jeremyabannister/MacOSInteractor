@@ -11,7 +11,7 @@ import OSInteractor
 import Shell
 import Cliclick
 
-// MARK: - Initial Declaration
+// MARK: - --> Initial Declaration <--
 public struct MacOSInteractor: OSInteractor {
   private let shell: Shell
   private let cliclick: Cliclick
@@ -26,6 +26,10 @@ public struct MacOSInteractor: OSInteractor {
 extension MacOSInteractor {
   public func click (at x: Double, _ y: Double) {
     cliclick.click(at: x, y)
+  }
+  
+  public func moveCursor (to x: Double, _ y: Double) {
+    cliclick.moveCursor(to: x, y)
   }
   
   public func type (_ text: String) {

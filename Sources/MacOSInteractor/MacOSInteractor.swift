@@ -59,6 +59,19 @@ extension MacOSInteractor {
     public func closeTab () { whileHolding(.cmd) { type("w") } }
 }
 
-public func Delay (by timeInterval: TimeInterval, _ action: @escaping ()->()) {
-    DispatchQueue.main.asyncAfter(deadline: .now() + timeInterval, execute: action)
+public func Delay (by timeInterval: TimeInterval,
+                   _ action: @escaping ()->()) {
+    
+    let dispatchGroup = DispatchGroup()
+    dispatchGroup.enter()
+    DispatchQueue
+        .global(qos: .background)
+        .asyncAfter(
+            deadline: .now() + timeInterval,
+            execute: {
+                action()
+                dispatchGroup.leave()
+            }
+        )
+    dispatchGroup.wait()
 }
